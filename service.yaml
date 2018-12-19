@@ -1,13 +1,13 @@
 apiVersion: v1
 kind: Service
 metadata:
- name: sample-server
+ name: egawa-server
  labels:
-   name: sample-server
+   name: egawa-server
 spec:
  ports:
  - port: 8080
    targetPort: 8080
  type: NodePort
  selector:
-   name: sample-server
+   name: egawa-server

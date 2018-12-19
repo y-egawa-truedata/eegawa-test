@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
- name: sample-server
+ name: egawa-server
 spec:
  replicas: 2
  selector:
    matchLabels:
-     name: sample-server
+     name: egawa-server
  template:
    metadata:
      labels:
-       name: sample-server
+       name: egawa-server
    spec:
      containers:
-     - name: sample-server
-       image: gcr.io/study-sandbox/sample-server:latest
+     - name: egawa-server
+       image: gcr.io/study-sandbox/egawa-server:latest
        ports:
        - containerPort: 8080
          protocol: TCP
