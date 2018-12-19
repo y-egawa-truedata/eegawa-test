@@ -13,7 +13,7 @@ import (
 						}
 
 						func DefaultHandler(w http.ResponseWriter, r *http.Request) {
-								fmt.Fprintf(w, "Hello, World")
+								fmt.Fprintf(w, "Hello, World!!!!!!!!!!!")
 							}
 
 							func StatusHandler(w http.ResponseWriter, r *http.Request) {
