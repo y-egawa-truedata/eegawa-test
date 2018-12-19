@@ -2,10 +2,10 @@ steps:
 # Dockerfileを利用してアプリのテストビルドとイメージのビルドを行う。$_VERSIONはトリガーの変数として設定します。
 # $PROJECT_IDには使用中のプロジェクトIDが自動的に挿入されます
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-f', 'Dockerfile', '--tag=gcr.io/$PROJECT_ID/egawa-server:$_VERSION', '.']
-# 作成したegawa-serverイメージをPUSHする
+  args: ['build', '-f', 'Dockerfile', '--tag=gcr.io/$PROJECT_ID/egawa-cluster:$_VERSION', '.']
+# 作成したegawa-clusterイメージをPUSHする
 - name: 'gcr.io/cloud-builders/docker'
-  args: ["push", "gcr.io/$PROJECT_ID/egawa-server:$_VERSION"]
+  args: ["push", "gcr.io/$PROJECT_ID/egawa-cluster:$_VERSION"]
 # aaaClusterを取得。$_ZONEはトリガーの変数として設定します。
 - name: 'gcr.io/cloud-builders/gcloud'
   args:
@@ -13,7 +13,7 @@ steps:
   - container
   - clusters
   - get-credentials
-  - egawa-server
+  - egawa-cluster
   - --zone=$_ZONE
   - --project=$PROJECT_ID
 # アプリのデプロイ設定
@@ -31,13 +31,13 @@ steps:
   args:
   - 'set'
   - 'image'
-  - 'deployment/egawa-server'
-  - 'egawa-server=gcr.io/$PROJECT_ID/egawa-server:$_VERSION'
+  - 'deployment/egawa-cluster'
+  - 'egawa-cluster=gcr.io/$PROJECT_ID/egawa-cluster:$_VERSION'
 # デプロイのステータス確認
 - name: 'gcr.io/cloud-builders/kubectl'
   args:
   - 'rollout'
   - 'status'
-  - 'deployment/egawa-server'
+  - 'deployment/egawa-cluster'
 
 

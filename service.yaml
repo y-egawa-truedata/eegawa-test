@@ -1,13 +1,13 @@
 apiVersion: v1
 kind: Service
 metadata:
- name: egawa-server
+ name: egawa-cluster
  labels:
-   name: egawa-server
+   name: egawa-cluster
 spec:
  ports:
  - port: 8080
    targetPort: 8080
  type: NodePort
  selector:
-   name: egawa-server
+   name: egawa-cluster
